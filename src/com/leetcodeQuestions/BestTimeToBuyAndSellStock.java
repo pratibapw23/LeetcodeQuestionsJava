@@ -1,45 +1,65 @@
+//7,1,5,3,6,4
 package com.leetcodeQuestions;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class BestTimeToBuyAndSellStock {
 	
 	
 	public static void main(String[] args) {
-		int prices[]= {2,1,4};
+		int prices[]= {8,6,4,3,3,2,3,5,8,3,8,2,6};
 		int profit=maxProfit(prices);
 		System.out.println(profit);
 
 	}
 
 	private static int maxProfit(int[] prices) {
-		int max=-1;
-		int diff=0;
-		int m=0;
-		ArrayList<Integer> list=new ArrayList<Integer>();
-		ArrayList<Integer> list2=new ArrayList<Integer>();
-		for(int i=0;i<prices.length;i++)
-			list.add(prices[i]);
-		for(int i=0;i<list.size();i++) {
-			int current=list.get(i);
-			for(int j=i+1;j<list.size();j++) {
-				list2.add(list.get(j));
+		
+		LinkedHashMap<Integer, Integer> map=new LinkedHashMap<>();
+		ArrayList<Integer> list=new ArrayList<>();
+		int maxdiff=0;
+		for(int i=0;i<prices.length;i++) {
+			int current=prices[i];
+			boolean selected =false;
+			for(int j=i+1;j<prices.length;j++) {
+				if(prices[j]>current) {
+					selected=true;
+				}
 			}
-			if(!list2.isEmpty())
-				max=Collections.max(list2);
-			if(max>current) {
-				diff=max-current;
+			if(selected==true) {
+				for(int j=i+1;j<prices.length;j++)
+				{
+					list.add(prices[j]);
+				}
 			}
-			if(diff>m) {
-				m=diff;
-				return m;
+			int max=0;
+			if(!list.isEmpty()) {
+				max=Collections.max(list);
 			}
-				
 			
-			list2.clear();
+			if(selected==true)
+			{
+				map.put(current, max);
+				for(Map.Entry<Integer, Integer> entry:map.entrySet()) {
+					int diff=entry.getValue()-entry.getKey();
+					if(diff>maxdiff)
+						maxdiff=diff;
+				}
+			}
+			list.clear();
 		}
-		return 0;
+//		int maxdiff=0;
+//		for(Map.Entry<Integer, Integer> entry:map.entrySet()) {
+//			int diff=entry.getValue()-entry.getKey();
+//			if(diff>maxdiff)
+//				maxdiff=diff;
+//		}
+		System.out.println(map);
+		
+		return maxdiff;
 	}
 
 }
