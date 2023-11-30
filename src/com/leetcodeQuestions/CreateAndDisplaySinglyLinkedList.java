@@ -38,6 +38,12 @@ class Node{
 			}
 		}
 	}
+	public void addNodeAtBeginning(int data) {
+		Node current=head;
+		Node newNode=new Node(data);
+		head=newNode;
+		head.next=current;
+	}
 
 
 
@@ -45,6 +51,11 @@ class Node{
 		CreateAndDisplaySinglyLinkedList list=new CreateAndDisplaySinglyLinkedList();
 		list.addNode(10);
 		list.addNode(22);
+		list.addNode(50);
+//		list.display();
+		list.addNodeAtBeginning(30);
+		list.addNodeAtBeginning(5);
+		list.addNodeAtBeginning(50);
 		list.display();
 	}
 
