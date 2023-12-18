@@ -3,43 +3,42 @@ package com.leetcodeQuestions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
+import java.util.PriorityQueue;
 
 public class SlidingWindowMaximum {
 
 	public static void main(String[] args) {
 		
-		int nums[] = {1}, k = 1;
+		int nums[] = {1,3,1,2,0,5}, k = 3;
 		int arr[]=slidingWindowMax(nums,k);
 		System.out.println(Arrays.toString(arr));
 
 	}
 
 	private static int[] slidingWindowMax(int[] nums, int k) {
-		int left=0;
-//		List<Integer> list1=new ArrayList<>();
-		List<Integer> finalList=new ArrayList<>();
-		for(int right=k-1;right<nums.length;right++) {
-			int temp=left;
-			List<Integer> list1=new ArrayList<>();
-			while(temp<=right && temp<nums.length) {
-				list1.add(nums[temp]);
-				temp++;
-			}
-			finalList.add(Collections.max(list1));
-			list1.clear();
-			left++;
+		
+		PriorityQueue<Integer> queue=new PriorityQueue<>(Collections.reverseOrder());
+		ArrayList<Integer> list=new ArrayList<>();
+		int i=0;
+		for(; i<k; i++)
+			queue.add(nums[i]);
+		list.add(queue.peek());
+		queue.remove(nums[0]);
+		
+		for(; i<nums.length; i++) {
+			queue.add(nums[i]);
+			System.out.println("Queue element="+queue);
+			list.add(queue.peek());
+			queue.remove(i-k+1);
 		}
-//		System.out.println(finalList);
-		int arr[]=new int[finalList.size()];
+		int arr[]=new int[list.size()];
 		int pos=0;
-		for(Integer i:finalList) {
-			arr[pos]=i;
+		for(int j:list) {
+			arr[pos]=j;
 			pos++;
 		}
 			
-		return arr;
-		
+		return arr;		
 	}
 
 }
