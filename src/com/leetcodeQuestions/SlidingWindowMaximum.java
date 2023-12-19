@@ -24,13 +24,14 @@ public class SlidingWindowMaximum {
 			queue.add(nums[i]);
 		list.add(queue.peek());
 		queue.remove(nums[0]);
-		
+		System.out.println(i);
 		for(; i<nums.length; i++) {
 			queue.add(nums[i]);
 			System.out.println("Queue element="+queue);
 			list.add(queue.peek());
-			queue.remove(i-k+1);
+			queue.remove(nums[i-k+1]);
 		}
+		System.out.println(list);
 		int arr[]=new int[list.size()];
 		int pos=0;
 		for(int j:list) {
