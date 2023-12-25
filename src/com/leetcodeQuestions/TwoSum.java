@@ -23,8 +23,8 @@ public class TwoSum {
 			for(int j=i+1;j<nums.length;j++) {
 				sum=nums[i]+nums[j];
 				if(sum==target) {
-					indices[0]=i;
-					indices[1]=j;
+					indices[0]=i+1;
+					indices[1]=j+1;
 				}
 			}
 		}
