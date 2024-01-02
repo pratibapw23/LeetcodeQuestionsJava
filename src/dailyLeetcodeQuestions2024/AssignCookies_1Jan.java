@@ -2,7 +2,7 @@ package dailyLeetcodeQuestions2024;
 
 import java.util.Arrays;
 
-public class AssignCookies1Jan {
+public class AssignCookies_1Jan {
 
 	public static void main(String[] args) {
 		int g[]= {1,2}, s[]= {1,2,3};
