@@ -23,13 +23,8 @@ public class NthTribonacciNumber {
 		dp[0]=0;
 		dp[1]=1;
 		dp[2]=1;
-		int a=0,b=0,c=0;
 		for(int i=3;i<n+1;i++) {
-			c=i-1; //1
-			b=i-2; //0
-			a=i-3;
-			dp[i]=dp[a]+dp[b]+dp[c];
-			a++;b++;c++;
+			dp[i]=dp[i-3]+dp[i-2]+dp[i-1];
 		}
 //		System.out.println(Arrays.toString(dp));
 		return dp[dp.length-1];
