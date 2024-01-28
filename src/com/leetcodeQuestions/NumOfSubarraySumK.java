@@ -14,28 +14,18 @@ public class NumOfSubarraySumK {
 	}
 
 	private static int subarraySum(int[] arr, int k) {
-		
+		int count=0;
 		List<ArrayList<Integer>> res=new ArrayList<>();
 		
 		for(int i=0;i<arr.length;i++) {
-			
-			for(int j=i;j<arr.length;j++) {
-				List<Integer>  list=new ArrayList<>();
-				for(int k1=i;k1<=j;k1++) {
-					list.add(arr[k1]);
-				}
-				res.add(new ArrayList<>(list));
-			}
-			
-		}
-		int count=0;
-		for(ArrayList<Integer> l:res) {
 			int sum=0;
-			for(int i=0;i<l.size();i++) {
-				sum+=l.get(i);
+			for(int j=i;j<arr.length;j++) {
+				
+				sum+=arr[j];
+				if(sum==k)
+					count++;
 			}
-			if(sum==k)
-				count++;
+			
 		}
 		return count;
 	}
