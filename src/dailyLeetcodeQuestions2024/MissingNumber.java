@@ -1,6 +1,8 @@
 package dailyLeetcodeQuestions2024;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MissingNumber {
 
@@ -12,13 +14,19 @@ public class MissingNumber {
 	}
 
 	private static int missingNumber(int[] nums) {
-		int sum=0;
-		for(int i=0;i<nums.length;i++) {
-			sum+=nums[i];
-		}
-		int sn=nums.length*(nums.length+1)/2;
 		
-		return sn-sum;
+		int arr[]=new int[nums.length+1];
+		for(int i=0;i<arr.length;i++)
+			arr[i]=-1;
+		for(int i=0;i<nums.length;i++) {
+			arr[nums[i]]=nums[i];
+		}
+		for(int i=0;i<arr.length;i++) {
+			if(arr[i]==-1)
+				return i;
+		}
+		System.out.println(Arrays.toString(arr));
+		return 0;
 	}
 
 }
