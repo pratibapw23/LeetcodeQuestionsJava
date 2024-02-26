@@ -1,5 +1,8 @@
 package dailyTargatedLeetcodeQuestions;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class FindTheDuplicateNumber {
 
 	public static void main(String[] args) {
@@ -9,11 +12,11 @@ public class FindTheDuplicateNumber {
 	}
 
 	private static int findTheDuplicateNumber(int[] nums) {
+		Set<Integer> set=new HashSet<>();
 		for(int i=0;i<nums.length;i++) {
-			for(int j=i+1;j<nums.length;j++) {
-				if(nums[i]==nums[j])
-					return nums[i];
-			}
+			if(!set.add(nums[i]))
+				return nums[i];
+			set.add(nums[i]);
 		}
 		return 0;
 	}
