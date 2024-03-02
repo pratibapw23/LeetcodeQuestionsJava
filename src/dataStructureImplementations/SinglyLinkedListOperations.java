@@ -24,11 +24,12 @@ public class SinglyLinkedListOperations {
 		
 		Node head=n1;
 		n1.next=n2; n2.next=n3;n3.next=n4; n4.next=null;
-		displayLinkedList(head);
+//		displayLinkedList(head);
 //		insertNewElementAtZeroPos(100, head);
 //		insertNewElementAtGivenPos(30,head,2);
 //		deleteNodeAtFirstPos(head);
 //		deleteNodeFromGivenPos(head, 2);
+		middleNode(head);
 	}
 	private static void displayLinkedList(Node head) {
 		
@@ -71,6 +72,25 @@ public class SinglyLinkedListOperations {
 		prev.next=prev.next.next;
 		System.out.println("After deletingnode at given position");
 		displayLinkedList(head);
+	}
+	private static Node middleNode(Node head) {
+		Node curr=head;
+		int count=0;
+		while(curr!=null) {
+			count++;
+			curr=curr.next;
+		}
+		int mid=count/2+1;
+		Node middle=head;
+		while(middle!=null) {
+			mid--;
+			if(mid==0)
+				break;
+			middle=middle.next;
+		}
+		System.out.println(middle.data);
+		return middle;
+		
 	}
 
 }
