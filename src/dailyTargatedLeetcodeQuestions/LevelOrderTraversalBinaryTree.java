@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 class TreeNode{
 	int val;
@@ -20,7 +21,9 @@ public class LevelOrderTraversalBinaryTree {
 	public static void main(String[] args) {
 		sc=new Scanner(System.in);
 		TreeNode root=createNode();
-//		preorderTraversal(root);
+		System.out.println("Preorder Traversal:");
+		preorderTraversal(root);
+		System.out.println("Level Order Traversal:");
 	    levelOrdeTraversal(root);
 	}
 	private static void levelOrdeTraversal(TreeNode root) {
@@ -47,9 +50,21 @@ public class LevelOrderTraversalBinaryTree {
 	private static void preorderTraversal(TreeNode root) {
 		if(root==null) return;
 		
-		System.out.println(root.val);
-		preorderTraversal(root.left);
-		preorderTraversal(root.right);
+		List<Integer> list=new ArrayList<>();
+		Stack<TreeNode> st=new Stack<>();
+		st.add(root);
+		while(!st.isEmpty()) {
+			TreeNode curr=st.pop();
+			list.add(curr.val);
+			if(curr.right!=null)
+				st.add(curr.right);
+			if(curr.left!=null)
+				st.add(curr.left);
+		}
+		System.out.println(list);
+//		System.out.println(root.val);
+//		preorderTraversal(root.left);
+//		preorderTraversal(root.right);
 	}
 	public static TreeNode createNode() {
 		TreeNode root=null;
