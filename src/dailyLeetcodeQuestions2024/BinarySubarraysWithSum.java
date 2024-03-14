@@ -1,7 +1,7 @@
 package dailyLeetcodeQuestions2024;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BinarySubarraysWithSum {
 
@@ -13,29 +13,16 @@ public class BinarySubarraysWithSum {
 	}
 
 	private static int binarySubarrayWithSum(int[] nums, int goal) {
+		int count=0;
 		int sum=0;
-		List<List<Integer>> ans=new ArrayList<>();
-		List<Integer> list=new ArrayList<>();
-		for(int i=0;i<nums.length;i++) {
-			
-			for(int j=i;j<nums.length;j++) {
-				sum=0;
-				for(int k=i;k<=j;k++) {
-					sum+=nums[k];
-				}
-				if(sum==goal) {
-					for(int k=i;k<=j;k++) {
-						list.add(nums[k]);
-					}
-					ans.add(new ArrayList<>(list));
-					list.clear();
-				}
-				
-			}
-			
+		Map<Integer,Integer> map=new HashMap<>();
+		map.put(0, 1);
+		for(int i:nums) {
+			sum+=i;
+			if(map.containsKey(sum-goal)) count+=map.get(sum-goal);
+			map.put(sum, map.getOrDefault(sum, 0)+1);
 		}
-		System.out.println(ans);
-		return ans.size();
+		return count;
 	}
 
 }
