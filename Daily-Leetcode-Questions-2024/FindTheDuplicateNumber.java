@@ -1,6 +1,7 @@
 package dailyLeetcodeQuestions2024;
 
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FindTheDuplicateNumber {
 
@@ -11,10 +12,11 @@ public class FindTheDuplicateNumber {
 	}
 
 	private static int findDuplicateNumber(int[] nums) {
-		Arrays.sort(nums);
+		Set<Integer> set=new HashSet<>();
 		for(int i=0;i<nums.length;i++) {
-			if(nums[i]==nums[i+1])
+			if(!set.add(nums[i]))
 				return nums[i];
+			set.add(nums[i]);
 		}
 		return 0;
 	}
